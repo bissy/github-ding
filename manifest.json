@@ -3,9 +3,19 @@
   "name": "GitHub PR Ding Notifier",
   "version": "1.0.0",
   "description": "GitHubのプルリクがマージ可能になったら音で通知します",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
   "permissions": [
-    "storage"
+    "storage",
+    "scripting"
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {},
   "content_scripts": [
     {
       "matches": [

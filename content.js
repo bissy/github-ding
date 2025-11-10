@@ -36,6 +36,14 @@
       hasPlayedSound
     });
 
+    // アイコンを更新（常に）
+    chrome.runtime.sendMessage({
+      type: 'UPDATE_ICON',
+      isMergeable: isMergeable
+    }).catch(() => {
+      // エラーは無視（拡張機能が再読み込み中の場合など）
+    });
+
     // ステータスが変わり、マージ可能になった場合
     if (isMergeable && lastStatus === false && !hasPlayedSound) {
       console.log('🔔 GitHub PR Ding - PR is now mergeable! Playing notification sound!');
