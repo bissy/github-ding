@@ -1,0 +1,31 @@
+<svg width="128" height="128" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="128" height="128" rx="20" fill="#2da44e"/>
+
+  <!-- ベルのアイコン -->
+  <g transform="translate(32, 24)">
+    <!-- ベル本体 -->
+    <path d="M 32 15 C 32 10 28 5 20 5 C 12 5 8 10 8 15 L 8 35 C 8 40 5 45 0 50 L 40 50 C 35 45 32 40 32 35 Z" fill="white"/>
+
+    <!-- ベルの底部 -->
+    <ellipse cx="20" cy="50" rx="20" ry="3" fill="white" opacity="0.8"/>
+
+    <!-- ベルの取っ手 -->
+    <rect x="18" y="0" width="4" height="8" rx="2" fill="white"/>
+
+    <!-- 音波1 -->
+    <path d="M 45 25 Q 50 25 50 35" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M 52 20 Q 60 25 60 40" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+    <!-- 音波2（左側） -->
+    <path d="M -5 25 Q -10 25 -10 35" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M -12 20 Q -20 25 -20 40" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+    <!-- クラッパー -->
+    <circle cx="20" cy="54" r="3" fill="white"/>
+  </g>
+
+  <!-- GitHubロゴの色（緑）のチェックマーク -->
+  <circle cx="96" cy="96" r="16" fill="#ffffff"/>
+  <path d="M 88 96 L 94 102 L 104 88" stroke="#2da44e" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

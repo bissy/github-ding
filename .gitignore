@@ -1,0 +1,12 @@
+# 音声ファイル（ユーザーが各自ダウンロード）
+*.mp3
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Node modules (if any)
+node_modules/
