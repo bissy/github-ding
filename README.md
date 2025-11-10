@@ -12,9 +12,10 @@ GitHubのプルリクエストがマージ可能になったら「Ding♪」と�
 
 ## インストール方法
 
-1. 音声ファイルを準備
-   - `ding.mp3` と `meow.mp3` をこのフォルダに保存してください
-   - または、お好みの音声ファイル（MP3形式）を使用できます
+1. このリポジトリをクローンまたはダウンロード
+   ```bash
+   git clone https://github.com/bissy/github-ding.git
+   ```
 
 2. Chromeブラウザで `chrome://extensions/` を開く
 
@@ -22,7 +23,7 @@ GitHubのプルリクエストがマージ可能になったら「Ding♪」と�
 
 4. 「パッケージ化されていない拡張機能を読み込む」をクリック
 
-5. このフォルダ（`github-ding`）を選択
+5. ダウンロードした `github-ding` フォルダを選択
 
 6. 拡張機能が有効化されます
 
@@ -59,10 +60,11 @@ github-ding/
 ├── content.js       # PRページを監視するスクリプト
 ├── options.html     # オプション設定ページ
 ├── options.js       # オプション設定スクリプト
-├── ding.mp3         # 通知音：Ding（要追加）
-├── meow.mp3         # 通知音：Meow（要追加）
+├── ding.mp3         # 通知音：Ding
+├── meow.mp3         # 通知音：Meow
 ├── icon.svg         # 拡張機能のアイコン（SVG形式）
 ├── CREDITS.md       # 著作権表示
+├── LICENSE          # MIT License
 └── README.md        # このファイル
 ```
 
@@ -70,7 +72,6 @@ github-ding/
 
 ### 音が鳴らない場合
 
-- `ding.mp3` ファイルが拡張機能のフォルダに正しく配置されているか確認してください
 - ブラウザの音量設定を確認してください
 - Chromeのサイト設定で音声が許可されているか確認してください
 - コンソール（F12）を開いてエラーメッセージを確認してください
