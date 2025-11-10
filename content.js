@@ -57,11 +57,11 @@
     lastStatus = isMergeable;
   }
 
-  // Ding音を再生
+  // 通知音を再生
   function playDingSound() {
     // 保存された設定を読み込む
     chrome.storage.sync.get({
-      notificationSound: 'ding',
+      notificationSound: 'meow',
       volume: 0.7
     }, function(items) {
       try {

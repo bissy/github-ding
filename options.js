@@ -13,7 +13,7 @@
   // 保存された設定を読み込む
   function loadSettings() {
     chrome.storage.sync.get({
-      notificationSound: 'ding',
+      notificationSound: 'meow',
       volume: 0.7
     }, function(items) {
       // 音声設定を反映

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "GitHub PR Ding Notifier",
+  "name": "GitHub PR Meow Notifier",
   "version": "1.0.0",
-  "description": "GitHubのプルリクがマージ可能になったら音で通知します",
+  "description": "GitHubのプルリクがマージ可能になったらニャーン♪と通知します",
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
