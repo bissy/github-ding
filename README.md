@@ -7,6 +7,7 @@ GitHubのプルリクエストがマージ可能になったら「Ding♪」と�
 - プルリクエストのチェックが全て通過し、マージ可能になったら自動で通知
 - 2種類の通知音から選択可能（Ding / Meow）
 - 音量調整機能
+- **拡張機能アイコンが緑色に変化**（マージ可能時）
 - 画面右上に緑色の通知メッセージを表示
 - ページタイトルも一時的に変更して視覚的に通知
 
@@ -56,16 +57,23 @@ GitHubのプルリクエストがマージ可能になったら「Ding♪」と�
 
 ```
 github-ding/
-├── manifest.json    # Chrome拡張の設定ファイル
-├── content.js       # PRページを監視するスクリプト
-├── options.html     # オプション設定ページ
-├── options.js       # オプション設定スクリプト
-├── ding.mp3         # 通知音：Ding
-├── meow.mp3         # 通知音：Meow
-├── icon.svg         # 拡張機能のアイコン（SVG形式）
-├── CREDITS.md       # 著作権表示
-├── LICENSE          # MIT License
-└── README.md        # このファイル
+├── manifest.json       # Chrome拡張の設定ファイル
+├── background.js       # バックグラウンドワーカー（アイコン管理）
+├── content.js          # PRページを監視するスクリプト
+├── options.html        # オプション設定ページ
+├── options.js          # オプション設定スクリプト
+├── ding.mp3            # 通知音：Ding
+├── meow.mp3            # 通知音：Meow
+├── icon16.png          # アイコン 16x16（待機中）
+├── icon48.png          # アイコン 48x48（待機中）
+├── icon128.png         # アイコン 128x128（待機中）
+├── icon-green-16.png   # アイコン 16x16（通知時）
+├── icon-green-48.png   # アイコン 48x48（通知時）
+├── icon-green-128.png  # アイコン 128x128（通知時）
+├── icon.svg            # アイコン元データ（SVG形式）
+├── CREDITS.md          # 著作権表示
+├── LICENSE             # MIT License
+└── README.md           # このファイル
 ```
 
 ## トラブルシューティング
