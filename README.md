@@ -70,7 +70,8 @@ github-ding/
 ├── icon-green-16.png   # アイコン 16x16（通知時）
 ├── icon-green-48.png   # アイコン 48x48（通知時）
 ├── icon-green-128.png  # アイコン 128x128（通知時）
-├── icon.svg            # アイコン元データ（SVG形式）
+├── icon.svg            # アイコン元データ（待機中・SVG形式）
+├── icon-green.svg      # アイコン元データ（通知時・SVG形式）
 ├── CREDITS.md          # 著作権表示
 ├── LICENSE             # MIT License
 └── README.md           # このファイル
