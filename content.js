@@ -57,22 +57,12 @@
     lastStatus = isMergeable;
   }
 
-  // 通知音を再生
+  // 通知音を再生（background service workerに委託）
   function playDingSound() {
-    // 保存された設定を読み込む
-    chrome.storage.sync.get({
-      notificationSound: 'meow',
-      volume: 0.7
-    }, function(items) {
-      try {
-        const audio = new Audio(chrome.runtime.getURL(`${items.notificationSound}.mp3`));
-        audio.volume = items.volume;
-        audio.play().catch(err => {
-          console.error('Failed to play sound:', err);
-        });
-      } catch (err) {
-        console.error('Failed to create audio:', err);
-      }
+    chrome.runtime.sendMessage({
+      type: 'PLAY_SOUND'
+    }).catch(err => {
+      console.error('Failed to send play sound message:', err);
     });
   }
 
