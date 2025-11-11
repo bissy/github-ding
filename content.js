@@ -23,10 +23,16 @@
         showNotification();
 
         // アイコンを更新
-        chrome.runtime.sendMessage({
-          type: 'UPDATE_ICON',
-          isMergeable: true
-        }).catch(() => {});
+        try {
+          chrome.runtime.sendMessage({
+            type: 'UPDATE_ICON',
+            isMergeable: true
+          }).catch(() => {
+            // Extension context invalidated エラーを無視
+          });
+        } catch (e) {
+          // Extension context invalidated エラーを無視
+        }
       }
 
       lastFaviconHref = currentHref;
@@ -72,12 +78,16 @@
     });
 
     // アイコンを更新（常に）
-    chrome.runtime.sendMessage({
-      type: 'UPDATE_ICON',
-      isMergeable: isMergeable
-    }).catch(() => {
-      // エラーは無視（拡張機能が再読み込み中の場合など）
-    });
+    try {
+      chrome.runtime.sendMessage({
+        type: 'UPDATE_ICON',
+        isMergeable: isMergeable
+      }).catch(() => {
+        // エラーは無視（拡張機能が再読み込み中の場合など）
+      });
+    } catch (e) {
+      // Extension context invalidated エラーを無視
+    }
 
     // ステータスが変わり、マージ可能になった場合
     if (isMergeable && lastStatus === false && !hasPlayedSound) {
@@ -94,11 +104,15 @@
 
   // 通知音を再生（background service workerに委託）
   function playDingSound() {
-    chrome.runtime.sendMessage({
-      type: 'PLAY_SOUND'
-    }).catch(err => {
-      console.error('Failed to send play sound message:', err);
-    });
+    try {
+      chrome.runtime.sendMessage({
+        type: 'PLAY_SOUND'
+      }).catch(err => {
+        console.error('Failed to send play sound message:', err);
+      });
+    } catch (e) {
+      console.error('Extension context invalidated:', e);
+    }
   }
 
   // 通知を表示
