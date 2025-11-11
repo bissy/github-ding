@@ -4,9 +4,42 @@
 
   let lastStatus = null;
   let hasPlayedSound = false;
+  let lastFaviconHref = '';
+
+  // ファビコンをチェック
+  function checkFavicon() {
+    const faviconLink = document.querySelector('link[rel="icon"]');
+    if (faviconLink) {
+      const currentHref = faviconLink.href;
+
+      // favicon-success が含まれていればマージ可能
+      const isMergeableByFavicon = currentHref.includes('favicon-success');
+
+      // ファビコンが変わった時点で通知
+      if (isMergeableByFavicon && lastFaviconHref && !lastFaviconHref.includes('favicon-success') && !hasPlayedSound) {
+        console.log('🔔 GitHub PR Ding - Favicon changed to success! Playing notification sound!');
+        playDingSound();
+        hasPlayedSound = true;
+        showNotification();
+
+        // アイコンを更新
+        chrome.runtime.sendMessage({
+          type: 'UPDATE_ICON',
+          isMergeable: true
+        }).catch(() => {});
+      }
+
+      lastFaviconHref = currentHref;
+      return isMergeableByFavicon;
+    }
+    return false;
+  }
 
   // マージ可能状態をチェック
   function checkMergeStatus() {
+    // まずファビコンをチェック（最優先）
+    const isMergeableByFavicon = checkFavicon();
+
     // "All checks have passed" のテキストを探す
     const allChecksPassedElement = Array.from(document.querySelectorAll('h3')).find(h3 =>
       h3.textContent.includes('All checks have passed')
@@ -24,9 +57,11 @@
     const successCircle = document.querySelector('circle[style*="stroke: var(--fgColor-success)"]');
     const fullCircle = successCircle && successCircle.getAttribute('style')?.includes('276.46, 276.46');
 
-    const isMergeable = !!(allChecksPassedElement && mergeButton && successBorder && fullCircle);
+    const isMergeable = isMergeableByFavicon || !!(allChecksPassedElement && mergeButton && successBorder && fullCircle);
 
     console.log('GitHub PR Ding - Status check:', {
+      faviconSuccess: isMergeableByFavicon,
+      faviconHref: lastFaviconHref,
       allChecksPassed: !!allChecksPassedElement,
       mergeButton: !!mergeButton,
       successBorder: !!successBorder,
@@ -136,6 +171,16 @@
     checkMergeStatus();
   });
 
+  // ファビコン変更を監視
+  const faviconObserver = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'href') {
+        console.log('GitHub PR Ding - Favicon changed, checking status...');
+        checkMergeStatus();
+      }
+    }
+  });
+
   // 監視開始
   function startObserving() {
     const targetNode = document.querySelector('body');
@@ -146,6 +191,16 @@
         attributes: true,
         attributeFilter: ['class']
       });
+
+      // ファビコンも監視
+      const faviconLink = document.querySelector('link[rel="icon"]');
+      if (faviconLink) {
+        faviconObserver.observe(faviconLink, {
+          attributes: true,
+          attributeFilter: ['href']
+        });
+        console.log('GitHub PR Ding - Favicon monitoring started');
+      }
 
       // 初回チェック
       checkMergeStatus();
