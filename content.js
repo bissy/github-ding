@@ -12,7 +12,7 @@
     if (faviconLink) {
       const currentHref = faviconLink.href;
 
-      // favicon-success が含まれていればマージ可能
+      // favicon-success または favicon-success-dark が含まれていればマージ可能
       const isMergeableByFavicon = currentHref.includes('favicon-success');
 
       // ファビコンが変わった時点で通知
