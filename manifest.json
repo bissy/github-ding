@@ -10,7 +10,8 @@
   },
   "permissions": [
     "storage",
-    "scripting"
+    "scripting",
+    "offscreen"
   ],
   "background": {
     "service_worker": "background.js"
